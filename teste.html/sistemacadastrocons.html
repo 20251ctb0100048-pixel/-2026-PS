@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Consultas Médicas</title>
+
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --primary: #2575fc;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --card: #1e1e1e;
+      --text: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: black;
+      color: white;
+      padding: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .hidden { display: none; }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleDark()">🌙</div>
+
+<header>🏥 Sistema de Consultas</header>
+
+<div class="container">
+
+  <!-- Cadastro -->
+  <div class="card" id="cadastro">
+    <h2>Cadastro</h2>
+    <input type="text" placeholder="Nome completo" id="nome">
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Senha" id="senha">
+    <input type="text" placeholder="Número do Cartão SUS" id="sus">
+    <button onclick="cadastrar()">Cadastrar</button>
+  </div>
+
+  <!-- Login -->
+  <div class="card hidden" id="login">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" id="loginEmail">
+    <input type="password" placeholder="Senha" id="loginSenha">
+    <button onclick="logar()">Entrar</button>
+  </div>
+
+  <!-- Consulta -->
+  <div class="card hidden" id="consulta">
+    <h2>Agendar Consulta</h2>
+
+    <select>
+      <option>Clínico Geral</option>
+      <option>Cardiologista</option>
+      <option>Dermatologista</option>
+      <option>Ortopedista</option>
+    </select>
+
+    <select>
+      <option>Hospital Vida+</option>
+      <option>Clínica Saúde Total</option>
+      <option>Centro Médico Brasil</option>
+    </select>
+
+    <select>
+      <option>Dr. João Silva</option>
+      <option>Dra. Mariana Costa</option>
+      <option>Dr. Pedro Oliveira</option>
+    </select>
+
+    <input type="date">
+    <input type="time">
+
+    <button onclick="agendar()">Agendar</button>
+
+    <div id="msg"></div>
+  </div>
+
+  <!-- Links úteis -->
+  <div class="card hidden" id="links">
+    <h2>Links úteis</h2>
+    <a href="https://www.gov.br/saude">Ministério da Saúde</a>
+    <a href="https://www.drogasil.com.br">Farmácia Drogasil</a>
+    <a href="https://www.paguemenos.com.br">Farmácia Pague Menos</a>
+    <a href="https://www.tuasaude.com">Informações sobre doenças</a>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding:15px; font-size:14px; opacity:0.7;">
+  Criado por Alcides Diniz 🚀
+</div>
+
+<script>
+  let user = {};
+
+  function cadastrar() {
+    user.email = document.getElementById('email').value;
+    user.senha = document.getElementById('senha').value;
+    alert('Cadastro realizado!');
+    document.getElementById('cadastro').classList.add('hidden');
+    document.getElementById('login').classList.remove('hidden');
+  }
+
+  function logar() {
+    const email = document.getElementById('loginEmail').value;
+    const senha = document.getElementById('loginSenha').value;
+
+    if (email === user.email && senha === user.senha) {
+      alert('Login realizado!');
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('consulta').classList.remove('hidden');
+      document.getElementById('links').classList.remove('hidden');
+    } else {
+      alert('Dados incorretos');
+    }
+  }
+
+  function agendar() {
+    document.getElementById('msg').innerHTML = 'Consulta agendada com sucesso!';
+  }
+
+  function toggleDark() {
+    document.body.classList.toggle('dark');
+  }
+</script>
+
+</body>
+</html>
