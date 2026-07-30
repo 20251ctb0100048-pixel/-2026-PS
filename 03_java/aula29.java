@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Aula29 {
+public class aula29 {
 
     // Exercício 1
     static double calcularMedia(double[] notas) {
