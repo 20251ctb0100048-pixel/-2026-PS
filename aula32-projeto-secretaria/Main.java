@@ -1,8 +1,8 @@
 /*
  * Disciplina: Programacao Orientada a Objetos / Estrutura de Dados
  * Nome: ALCIDES DINIZ VEIGA
- * Data: 2026.08.20
- * Projeto: Projeto Secretaria (Aula 33)
+ * Data: 2026.08.27
+ * Projeto: Projeto Secretaria (Aula 34)
  * Arquivo: Main.java
  */
 
@@ -26,6 +26,7 @@ public class Main {
             System.out.println("[3] Buscar aluno");
             System.out.println("[4] Atualizar aluno");
             System.out.println("[5] Remover aluno");
+            System.out.println("[6] Relatorio");
             System.out.println("[0] Sair");
             System.out.print("Sua escolha: ");
 
@@ -46,12 +47,15 @@ public class Main {
             } else if (opcao.equals("5")) {
                 remover();
 
+            } else if (opcao.equals("6")) {
+                relatorio();
+
             } else if (opcao.equals("0")) {
                 System.out.println("Secretaria fechada. Ate a proxima!");
                 break;
 
             } else {
-                System.out.println("Opcao invalida! Vale 0, 1, 2, 3, 4 ou 5.");
+                System.out.println("Opcao invalida! Vale 0, 1, 2, 3, 4, 5 ou 6.");
             }
         }
     }
@@ -95,13 +99,7 @@ public class Main {
         System.out.println("\n--- FICHAS NO GAVETEIRO: " + lista.size() + " ---");
 
         for (Aluno aluno : lista) {
-
-            System.out.println(
-                aluno.getMatricula() + " | "
-                + aluno.getNome() + " | "
-                + aluno.getCurso() + " | "
-                + aluno.getCidade()
-            );
+            System.out.println(aluno);
         }
     }
 
@@ -129,13 +127,7 @@ public class Main {
             return;
         }
 
-        System.out.println(
-            "Achei: "
-            + a.getMatricula() + " | "
-            + a.getNome() + " | "
-            + a.getCurso() + " | "
-            + a.getCidade()
-        );
+        System.out.println("Achei: " + a);
     }
 
     static void atualizar() {
@@ -165,7 +157,7 @@ public class Main {
         a.setCurso(novoCurso);
         a.setCidade(novaCidade);
 
-        System.out.println("Ficha atualizada.");
+        System.out.println("Ficha atualizada: " + a);
     }
 
     static void remover() {
@@ -189,5 +181,24 @@ public class Main {
         } else {
             System.out.println("Remocao cancelada.");
         }
+    }
+
+    static void relatorio() {
+
+        System.out.println("\n--- RELATORIO DA SECRETARIA ---");
+        System.out.println("Total de fichas: " + lista.size());
+
+        System.out.print("Contar alunos de qual curso? ");
+        String curso = scanner.nextLine();
+
+        int contador = 0;
+
+        for (Aluno aluno : lista) {
+            if (aluno.getCurso().equals(curso)) {
+                contador++;
+            }
+        }
+
+        System.out.println("Alunos de " + curso + ": " + contador);
     }
 }

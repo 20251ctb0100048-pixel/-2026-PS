@@ -1,8 +1,8 @@
 /*
  * Disciplina: Programacao Orientada a Objetos / Estrutura de Dados
  * Nome: ALCIDES DINIZ VEIGA
- * Data: 2026.08.20
- * Projeto: Projeto Secretaria (Aula 33)
+ * Data: 2026.08.27
+ * Projeto: Projeto Secretaria (Aula 34)
  * Arquivo: Aluno.java
  */
 
@@ -53,5 +53,13 @@ public class Aluno {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    @Override
+    public String toString() {
+        return matricula + " | "
+            + nome + " | "
+            + curso + " | "
+            + cidade;
     }
 }
