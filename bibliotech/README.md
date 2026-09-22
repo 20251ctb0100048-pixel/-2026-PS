@@ -37,3 +37,10 @@ O BiblioTech ajuda leitores a consultar e emprestar livros e bibliotecários a c
 ![Diagrama de casos de uso](docs/casos-de-uso.svg)
 
 ![Diagrama de classes](docs/classes.svg)
+
+## 5. Do diagrama ao Java
+
+Durante a implementação das classes, foram adicionados dois atributos que não estavam no diagrama:
+
+- `Livro.disponivel`: indica se o livro está disponível para empréstimo.
+- `Leitor.livrosEmMaos`: indica quantos livros o leitor está com ele.
