@@ -32,6 +32,18 @@ public class Biblioteca {
         }
     }
 
+    public String obterAcervoComoTexto() {
+        if (livros.isEmpty()) {
+            return "Nenhum livro cadastrado.";
+        }
+
+        String texto = "";
+        for (int i = 0; i < livros.size(); i++) {
+            texto = texto + livros.get(i) + "\n";
+        }
+        return texto;
+    }
+
     public Livro buscarLivro(String titulo) {
         for (Livro livro : livros) {
             if (livro.getTitulo().equalsIgnoreCase(titulo)) {
@@ -59,16 +71,31 @@ public class Biblioteca {
         }
 
         Emprestimo emprestimo = new Emprestimo(livro, leitor);
+
+        if (!emprestimo.realizarEmprestimo()) {
+            return false;
+        }
+
         emprestimos.add(emprestimo);
         return true;
     }
 
+    public boolean devolver(String titulo) {
+        for (Emprestimo e : emprestimos) {
+            if (e.getLivro().getTitulo().equalsIgnoreCase(titulo)
+                    && e.estaAtivo()) {
+                return e.registrarDevolucao();
+            }
+        }
+        return false;
+    }
+
     public boolean devolver(String titulo, String matricula) {
         for (Emprestimo e : emprestimos) {
-            if (e.getLivro().getTitulo().equalsIgnoreCase(titulo) && 
-                e.getLeitor().getMatricula().equals(matricula)) {
-                
-                return true;
+            if (e.getLivro().getTitulo().equalsIgnoreCase(titulo)
+                    && e.getLeitor().getMatricula().equals(matricula)
+                    && e.estaAtivo()) {
+                return e.registrarDevolucao();
             }
         }
         return false;
