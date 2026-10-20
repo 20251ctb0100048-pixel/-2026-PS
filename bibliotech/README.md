@@ -82,3 +82,55 @@ Os testes verificam consultas de livros e leitores, disponibilidade de livros, e
 O RF06, que trata da reserva de um livro indisponível, ainda não está implementado.
 
 Uma limitação atual é que o sistema funciona pelo código Java e pelo terminal, não possuindo ainda uma interface gráfica para facilitar o uso pelos leitores e bibliotecários.
+
+## Persistência de Dados
+
+O BiblioTech utiliza MariaDB com JDBC para armazenar os livros de forma persistente.
+
+### Banco de dados
+- Banco: `bibliotech`
+- Tabela: `livros`
+- Colunas: `id`, `titulo`, `autor` e `ano`
+- Driver JDBC: `lib/mariadb-java-client.jar`
+
+### Classes criadas
+- `Conexao.java`: estabelece a conexão com o banco de dados.
+- `TesteConexao.java`: verifica a conexão com o banco.
+- `LivroDAO.java`: implementa as operações de persistência.
+- `TesteLivroDAO.java`: testa o cadastro, a atualização e a exclusão de livros.
+
+### Operações disponíveis
+- `adicionarLivro(titulo, autor, ano)`: cadastra um livro.
+- `atualizarLivro(id, titulo, autor, ano)`: atualiza um livro existente.
+- `excluirLivro(id)`: exclui um livro existente.
+
+Os métodos retornam `true` quando uma linha é afetada e `false` quando nenhuma linha é alterada ou ocorre um erro SQL.
+
+### Como executar
+
+Configure as variáveis de ambiente no terminal:
+
+```bash
+export DB_USER=bibliotech
+export DB_PASSWORD='BiblioTech2026!'
+```
+
+Compile os arquivos:
+
+```bash
+javac -cp ".:lib/*" Conexao.java TesteConexao.java LivroDAO.java TesteLivroDAO.java
+```
+
+Teste a conexão:
+
+```bash
+java -cp ".:lib/*" TesteConexao
+```
+
+Teste as operações:
+
+```bash
+java -cp ".:lib/*" TesteLivroDAO
+```
+
+O servidor MariaDB deve estar em execução antes dos testes.
