@@ -1,6 +1,7 @@
 package bibliotech;
 
 public class Livro {
+    private int id;
     private String titulo;
     private String autor;
     private int ano;
@@ -11,6 +12,22 @@ public class Livro {
         this.autor = autor;
         this.ano = ano;
         this.disponivel = true;
+    }
+
+    public Livro(int id, String titulo, String autor, int ano) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ano = ano;
+        this.disponivel = true;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
