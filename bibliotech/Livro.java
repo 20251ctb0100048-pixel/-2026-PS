@@ -6,6 +6,7 @@ public class Livro {
     private String autor;
     private int ano;
     private boolean disponivel;
+    private String capa;
 
     public Livro(String titulo, String autor, int ano) {
         this.titulo = titulo;
@@ -59,4 +60,11 @@ public class Livro {
         String estado = disponivel ? "disponivel" : "emprestado";
         return titulo + " (" + autor + ", " + ano + ") - " + estado;
     }
+    public String getCapa() {
+    return capa;
+}
+
+public void setCapa(String capa) {
+    this.capa = capa;
+ }
 }
